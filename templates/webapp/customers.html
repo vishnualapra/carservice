@@ -9,7 +9,7 @@
 							<div class="page-header mt-0 shadow p-3">
 								<ol class="breadcrumb mb-sm-0">
 									<li class="breadcrumb-item"><a href="/dashboard/">Home</a></li>
-									<li class="breadcrumb-item active" aria-current="page">Manufacturer</li>
+									<li class="breadcrumb-item active" aria-current="page">Customers</li>
 								</ol>
 
 							</div>
@@ -17,7 +17,7 @@
 								<div class="col-md-12">
 									<div class="card shadow">
 										<div class="card-header">
-												<h2 class="mb-0" style="float:left">Manage Manufactures</h2>
+												<h2 class="mb-0" style="float:left">Manage Customers</h2>
 <button type="button" class="btn btn-success mt-1 mb-1"  style="float:right;" data-toggle="modal" data-target="#modal-form2">Add New</button>
 										</div>
 										<div class="card-body">
@@ -26,11 +26,12 @@
 													<thead>
 														<tr>
 															<th class="wd-15p">No</th>
-															<th class="wd-15p">Manufacturer Code</th>
-															<th class="wd-20p">Manufacturer Name</th>
-															<th class="wd-15p">Other Details</th>
-                                                            <th class="wd-10p">View Models</th>
-															<th class="wd-10p">Edit</th>
+                                                            <th class="wd-15p">CID</th>
+															<th class="wd-15p">Name</th>
+															<th class="wd-20p">Email</th>
+															<th class="wd-15p">Phone</th>
+                                                            <th class="wd-10p">Book </th>
+															<th class="wd-10p">View/Edit</th>
 															<th class="wd-25p">Delete</th>
 														</tr>
 													</thead>
@@ -59,21 +60,122 @@
 																		Edit Manufacturer
 																	</div>
 																	<form >
+                                                                        <input class="form-control" name="id" id="eid" placeholder="nu" type="number" readonly hidden required >
                                                                         <div class="form-group mb-3">
 																			<div class="input-group input-group-alternative">
 																				<div class="input-group-prepend">
 																					<span class="input-group-text"><i class="ni ni-email-83"></i></span>
 																				</div>
-                                                                                <input class="form-control" name="eid" readonly id="eid" placeholder="code" type="number">
 
+                                                                                <select class="form-control" name="salutation" id="esalutation" required >
+                                                                                    <option selected disabled>Title</option>
+                                                                                    <option value="Mr.">Mr.</option>
+                                                                                    <option value="Mrs.">Mrs.</option>
+                                                                                    <option value="MissMs.">MissMs.</option>
+                                                                                    <option value="Dr.">Dr.</option>
+                                                                                    <option value="Prof.">Prof.</option>
+                                                                                    <option value="MissMs.">Rev.</option>
+
+
+                                                                                </select>
 																			</div>
-                                                                        </div>
+																		</div>
+                                                                         <div class="form-group mb-3">
+																			<div class="input-group input-group-alternative">
+																				<div class="input-group-prepend">
+																					<span class="input-group-text"><i class="ni ni-email-83"></i></span>
+																				</div>
+
+																				<input class="form-control" name="firstname" id="efirstname" placeholder="firstname" type="text" required >
+																			</div>
+																		</div>
+                                                                         <div class="form-group mb-3">
+																			<div class="input-group input-group-alternative">
+																				<div class="input-group-prepend">
+																					<span class="input-group-text"><i class="ni ni-email-83"></i></span>
+																				</div>
+
+																				<input class="form-control" name="lastname" id="elastname" placeholder="lastname" type="text" required >
+																			</div>
+																		</div>
+                                                                        <div class="form-group mb-3">
+																			<div class="input-group input-group-alternative">
+																				<div class="input-group-prepend">
+																					<span class="input-group-text"><i class="ni ni-email-83"></i></span>
+																				</div>
+
+                                                                                <select class="form-control" name="gender" id="egender" required >
+                                                                                    <option selected disabled>Gender</option>
+                                                                                    <option value="Male">Male</option>
+                                                                                    <option value="Female.">Female</option>
+                                                                                    <option value="Other">Other</option>
+
+
+
+                                                                                </select>
+																			</div>
+																		</div>
+                                                                        <div class="form-group mb-3">
+																			<div class="input-group input-group-alternative">
+																				<div class="input-group-prepend">
+																					<span class="input-group-text"><i class="ni ni-email-83"></i></span>
+																				</div>
+
+																				<input class="form-control" name="email" id="eemail" placeholder="email" type="email" required >
+																			</div>
+																		</div>
 																		<div class="form-group mb-3">
 																			<div class="input-group input-group-alternative">
 																				<div class="input-group-prepend">
 																					<span class="input-group-text"><i class="ni ni-email-83"></i></span>
 																				</div>
-																				<input class="form-control" name="emechanic_name" id="emechanic_name" placeholder="Name" type="text">
+
+																				<input class="form-control" name="phone" id="ephone" placeholder="phone" type="number" required >
+																			</div>
+																		</div>
+                                                                        <div class="form-group mb-3">
+																			<div class="input-group input-group-alternative">
+																				<div class="input-group-prepend">
+																					<span class="input-group-text"><i class="ni ni-email-83"></i></span>
+																				</div>
+
+																				<input class="form-control" name="add1" id="eadd1" placeholder="Address Line 1" type="text" required >
+																			</div>
+																		</div>
+                                                                        <div class="form-group mb-3">
+																			<div class="input-group input-group-alternative">
+																				<div class="input-group-prepend">
+																					<span class="input-group-text"><i class="ni ni-email-83"></i></span>
+																				</div>
+
+																				<input class="form-control" name="add2" id="eadd2" placeholder="Address Line 2" type="text" required >
+																			</div>
+																		</div>
+                                                                        <div class="form-group mb-3">
+																			<div class="input-group input-group-alternative">
+																				<div class="input-group-prepend">
+																					<span class="input-group-text"><i class="ni ni-email-83"></i></span>
+																				</div>
+
+																				<input class="form-control" name="add3" id="eadd3" placeholder="Address Line 3" type="text" required >
+																			</div>
+																		</div>
+                                                                        <div class="form-group mb-3">
+																			<div class="input-group input-group-alternative">
+																				<div class="input-group-prepend">
+																					<span class="input-group-text"><i class="ni ni-email-83"></i></span>
+																				</div>
+
+																				<input class="form-control" name="city" id="ecity" placeholder="City" type="text" required >
+																			</div>
+																		</div>
+                                                                        <div class="form-group mb-3">
+																			<div class="input-group input-group-alternative">
+																				<div class="input-group-prepend">
+																					<span class="input-group-text"><i class="ni ni-email-83"></i></span>
+																				</div>
+
+																				<input class="form-control" name="state" id="estate" placeholder="State" type="text" required >
 																			</div>
 																		</div>
 																		<div class="form-group">
@@ -81,10 +183,9 @@
 																				<div class="input-group-prepend">
 																					<span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
 																				</div>
-                                                                                <textarea class="form-control" name="emechanic_details" id="emechanic_details" placeholder="Other Details" rows="4"></textarea>
+                                                                                <textarea  class="form-control" name="details" id="edetails" placeholder="Other Details" rows="4" required></textarea>
 																			</div>
 																		</div>
-
 																		<div class="text-center">
 																			<button type="button" class="btn btn-white my-4" id="editsave">Update</button>
                                                                             <button type="button" class="btn btn-link text-white ml-auto" data-dismiss="modal" id="closemodel">Close</button>
@@ -107,16 +208,70 @@
 
 																<div class="card-body px-lg-5 py-lg-5">
 																	<div class="text-center text-white mb-4 h2">
-																		Add New Manufacturer
+																		Add New Customer
 																	</div>
-																	<form>
+																	<form id="addform">
+                                                                         <div class="form-group mb-3">
+																			<div class="input-group input-group-alternative">
+																				<div class="input-group-prepend">
+																					<span class="input-group-text"><i class="ni ni-email-83"></i></span>
+																				</div>
+
+                                                                                <select class="form-control" name="salutation" id="salutation" required >
+                                                                                    <option selected disabled>Title</option>
+                                                                                    <option value="Mr.">Mr.</option>
+                                                                                    <option value="Mrs.">Mrs.</option>
+                                                                                    <option value="MissMs.">MissMs.</option>
+                                                                                    <option value="Dr.">Dr.</option>
+                                                                                    <option value="Prof.">Prof.</option>
+                                                                                    <option value="MissMs.">Rev.</option>
+
+
+                                                                                </select>
+																			</div>
+																		</div>
+                                                                         <div class="form-group mb-3">
+																			<div class="input-group input-group-alternative">
+																				<div class="input-group-prepend">
+																					<span class="input-group-text"><i class="ni ni-email-83"></i></span>
+																				</div>
+
+																				<input class="form-control" name="firstname" id="firstname" placeholder="firstname" type="text" required >
+																			</div>
+																		</div>
+                                                                         <div class="form-group mb-3">
+																			<div class="input-group input-group-alternative">
+																				<div class="input-group-prepend">
+																					<span class="input-group-text"><i class="ni ni-email-83"></i></span>
+																				</div>
+
+																				<input class="form-control" name="lastname" id="lastname" placeholder="lastname" type="text" required >
+																			</div>
+																		</div>
                                                                         <div class="form-group mb-3">
 																			<div class="input-group input-group-alternative">
 																				<div class="input-group-prepend">
 																					<span class="input-group-text"><i class="ni ni-email-83"></i></span>
 																				</div>
 
-																				<input class="form-control" name="manu_id" id="manu_id" placeholder="Manufacturer Code" type="number" required >
+                                                                                <select class="form-control" name="gender" id="gender" required >
+                                                                                    <option selected disabled>Gender</option>
+                                                                                    <option value="Male">Male</option>
+                                                                                    <option value="Female.">Female</option>
+                                                                                    <option value="Other">Other</option>
+
+
+
+                                                                                </select>
+																			</div>
+																		</div>
+                                                                        <div class="form-group mb-3">
+																			<div class="input-group input-group-alternative">
+																				<div class="input-group-prepend">
+																					<span class="input-group-text"><i class="ni ni-email-83"></i></span>
+																				</div>
+
+																				<input class="form-control" name="email" id="email" placeholder="email" type="email" required >
 																			</div>
 																		</div>
 																		<div class="form-group mb-3">
@@ -125,7 +280,52 @@
 																					<span class="input-group-text"><i class="ni ni-email-83"></i></span>
 																				</div>
 
-																				<input class="form-control" name="manu_name" id="manu_name" placeholder="Manufacturer Name" type="text" required >
+																				<input class="form-control" name="phone" id="phone" placeholder="phone" type="number" required >
+																			</div>
+																		</div>
+                                                                        <div class="form-group mb-3">
+																			<div class="input-group input-group-alternative">
+																				<div class="input-group-prepend">
+																					<span class="input-group-text"><i class="ni ni-email-83"></i></span>
+																				</div>
+
+																				<input class="form-control" name="add1" id="add1" placeholder="Address Line 1" type="text" required >
+																			</div>
+																		</div>
+                                                                        <div class="form-group mb-3">
+																			<div class="input-group input-group-alternative">
+																				<div class="input-group-prepend">
+																					<span class="input-group-text"><i class="ni ni-email-83"></i></span>
+																				</div>
+
+																				<input class="form-control" name="add2" id="add2" placeholder="Address Line 2" type="text" required >
+																			</div>
+																		</div>
+                                                                        <div class="form-group mb-3">
+																			<div class="input-group input-group-alternative">
+																				<div class="input-group-prepend">
+																					<span class="input-group-text"><i class="ni ni-email-83"></i></span>
+																				</div>
+
+																				<input class="form-control" name="add3" id="add3" placeholder="Address Line 3" type="text" required >
+																			</div>
+																		</div>
+                                                                        <div class="form-group mb-3">
+																			<div class="input-group input-group-alternative">
+																				<div class="input-group-prepend">
+																					<span class="input-group-text"><i class="ni ni-email-83"></i></span>
+																				</div>
+
+																				<input class="form-control" name="city" id="city" placeholder="City" type="text" required >
+																			</div>
+																		</div>
+                                                                        <div class="form-group mb-3">
+																			<div class="input-group input-group-alternative">
+																				<div class="input-group-prepend">
+																					<span class="input-group-text"><i class="ni ni-email-83"></i></span>
+																				</div>
+
+																				<input class="form-control" name="state" id="state" placeholder="State" type="text" required >
 																			</div>
 																		</div>
 																		<div class="form-group">
@@ -133,7 +333,7 @@
 																				<div class="input-group-prepend">
 																					<span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
 																				</div>
-                                                                                <textarea  class="form-control" name="manu_details" id="manu_details" placeholder="Other Details" rows="4" required></textarea>
+                                                                                <textarea  class="form-control" name="details" id="details" placeholder="Other Details" rows="4" required></textarea>
 																			</div>
 																		</div>
 
@@ -183,7 +383,7 @@
 		}, function(isConfirm) {
 			if (isConfirm) {
 			   deleteitem(frm);
-			   swal("Deleted!", "Manufacturer has been deleted.", "success");
+			   swal("Deleted!", "Customer has been deleted.", "success");
 
 			}
 
@@ -254,7 +454,7 @@ var csrftoken = readCookie('csrftoken');
         var settings = {
           "async": true,
           "crossDomain": true,
-          "url": base_url + "/api/manufacturer/",
+          "url": base_url + "/api/customer/",
           "method": "GET",
           "headers": {
             "Content-Type": "application/x-www-form-urlencoded",
@@ -273,10 +473,11 @@ $.ajax(settings).done(function (response) {
   var data = response;
     for (var i=0;i<data.length; i++){
           $('#example').DataTable().row.add([
-            i+1, data[i]['manufacturer_code'], data[i]['manufacturer_name'],data[i]['manufacturer_detail'],
-               "<a href='/manufacturer/"+data[i]['manufacturer_code']+"/' type='button' class='btn btn-blue mt-1 mb-1'>View</a>",
-              "<button type='button' class='btn btn-blue mt-1 mb-1' onclick='return assigneditvalues("+data[i]['manufacturer_code']+");' data-toggle='modal' data-target='#modal-form' >Edit</button>",
-        "<button type='button' class='btn btn-danger mt-1 mb-1' onclick='return alrt("+data[i]['manufacturer_code']+");'>Delete</button>"
+            i+1, "CUST"+data[i]['customer_id'], data[i]['title']+ " "+data[i]['first_name']+" "+data[i]['last_name'],data[i]['email_address'],
+               data[i]['phone_number'],
+               "<a href='/customers/"+data[i]['customer_id']+"/' type='button' class='btn btn-blue mt-1 mb-1'>Book</a>",
+              "<button type='button' class='btn btn-blue mt-1 mb-1' onclick='return assigneditvalues("+data[i]['customer_id']+");' data-toggle='modal' data-target='#modal-form' >Edit</button>",
+        "<button type='button' class='btn btn-danger mt-1 mb-1' onclick='return alrt("+data[i]['customer_id']+");'>Delete</button>"
             ]).draw();
     }
 
@@ -300,7 +501,7 @@ xhr.addEventListener("readystatechange", function () {
 });
 
 
-xhr.open("DELETE", base_url+"/api/manufacturer/"+id+"/");
+xhr.open("DELETE", base_url+"/api/customer/"+id+"/");
 xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 {#xhr.setRequestHeader("Authorization", "Basic YWRtaW46YWRtaW4xMjM=");#}
 xhr.setRequestHeader("Accept", "*/*");
@@ -322,7 +523,7 @@ xhr.send(data);
         var settings = {
   "async": true,
   "crossDomain": true,
-  "url": base_url+"/api/manufacturer/"+id+"/",
+  "url": base_url+"/api/customer/"+id+"/",
   "method": "GET",
   "headers": {
     "Content-Type": "application/x-www-form-urlencoded",
@@ -339,9 +540,19 @@ xhr.send(data);
 }
 
 $.ajax(settings).done(function (response) {
-        document.getElementById('eid').value = response['manufacturer_code'];
-        document.getElementById('emechanic_name').value = response['manufacturer_name'];
-        document.getElementById('emechanic_details').innerHTML = response['manufacturer_detail'];
+        document.getElementById('eid').value = response['customer_id'];
+        document.getElementById('esalutation').value = response['title'];
+        document.getElementById('efirstname').value = response['first_name'];
+        document.getElementById('elastname').value = response['last_name'];
+        document.getElementById('egender').value = response['gender'];
+        document.getElementById('eemail').value = response['email_address'];
+        document.getElementById('ephone').value = response['phone_number'];
+        document.getElementById('eadd1').value = response['address_line_1'];
+        document.getElementById('eadd2').value = response['address_line_2'];
+        document.getElementById('eadd3').value = response['address_line_3'];
+        document.getElementById('ecity').value = response['city'];
+         document.getElementById('estate').value = response['state'];
+        document.getElementById('edetails').innerHTML = response['other_customer_details'];
 });
 
     }
@@ -350,12 +561,23 @@ $.ajax(settings).done(function (response) {
 
 $("#editsave").click(function(){
   var id = document.getElementById('eid').value;
-  var name = document.getElementById('emechanic_name').value;
-  var details = $('textarea#emechanic_details').val();
+  var title = document.getElementById('esalutation').value;
+  var fname = document.getElementById('efirstname').value;
+   var lname = document.getElementById('elastname').value;
+   var gender = document.getElementById('egender').value;
+    var email = document.getElementById('eemail').value;
+    var phone = document.getElementById('ephone').value;
+    var add1 = document.getElementById('eadd1').value;
+    var add2 = document.getElementById('eadd2').value;
+    var add3 = document.getElementById('eadd3').value;
+    var city = document.getElementById('ecity').value;
+    var state = document.getElementById('estate').value;
+  var details = $('textarea#edetails').val();
+  {#alert(id+title+fname+lname+gender+email+phone+add1+add2+add3+city+state+details);#}
   var settings = {
   "async": true,
   "crossDomain": true,
-  "url": base_url+"/api/manufacturer/"+id+"/",
+  "url": base_url+"/api/customer/"+id+"/",
   "method": "PUT",
   "headers": {
     "Content-Type": "application/x-www-form-urlencoded",
@@ -371,16 +593,25 @@ $("#editsave").click(function(){
       "X-CSRFToken":csrftoken,
   },
    "data": {
-    "manufacturer_name": name,
-    "manufacturer_detail": details,
-       "manufacturer_code":id,
+   "title": title,
+       "first_name":fname,
+       "last_name":lname,
+       "gender":gender,
+       "email_address":email,
+        "phone_number":phone,
+       "address_line_1":add1,
+       "address_line_2":add2,
+       "address_line_3":add3,
+       "city":city,
+       "state":state,
+    "other_customer_details": details,
   }
 }
 
 $.ajax(settings).done(function (response) {
      document.getElementById("closemodel").click();
      getall();
-    swal("Updated!", "Manufacturer details has been updated.", "success");
+    swal("Updated!", "Customer details has been updated.", "success");
 });
 
 });
@@ -389,13 +620,22 @@ $.ajax(settings).done(function (response) {
 
 
     $("#addsave").click(function(){
-        var code = document.getElementById('manu_id').value;
-  var name = document.getElementById('manu_name').value;
-  var details = $('textarea#manu_details').val();
+        var title = document.getElementById('salutation').value;
+  var fname = document.getElementById('firstname').value;
+   var lname = document.getElementById('lastname').value;
+   var gender = document.getElementById('gender').value;
+    var email = document.getElementById('email').value;
+    var phone = document.getElementById('phone').value;
+    var add1 = document.getElementById('add1').value;
+    var add2 = document.getElementById('add2').value;
+    var add3 = document.getElementById('add3').value;
+    var city = document.getElementById('city').value;
+    var state = document.getElementById('state').value;
+  var details = $('textarea#details').val();
   var settings = {
   "async": true,
   "crossDomain": true,
-  "url": base_url+"/api/manufacturer/",
+  "url": base_url+"/api/customer/",
   "method": "POST",
   "headers": {
     "Content-Type": "application/x-www-form-urlencoded",
@@ -411,19 +651,26 @@ $.ajax(settings).done(function (response) {
       "X-CSRFToken":csrftoken,
   },
    "data": {
-    "manufacturer_name": name,
-       "manufacturer_code":code,
-    "manufacturer_detail": details,
+    "title": title,
+       "first_name":fname,
+       "last_name":lname,
+       "gender":gender,
+       "email_address":email,
+        "phone_number":phone,
+       "address_line_1":add1,
+       "address_line_2":add2,
+       "address_line_3":add3,
+       "city":city,
+       "state":state,
+    "other_customer_details": details,
   }
 }
 
 $.ajax(settings).done(function (response) {
      document.getElementById("closemodel2").click();
      getall();
-     document.getElementById('manu_name').value = "";
-      document.getElementById('manu_id').value = "";
-    $('#manu_details').val('');
-    swal("Saved!", "Manufacturer has been added.", "success");
+     $('#addform')[0].reset();
+    swal("Saved!", "Customer has been added.", "success");
     return false;
 });
 

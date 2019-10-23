@@ -1,10 +1,84 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+
+{% extends 'webapp/base.html' %}
+{% load staticfiles %}
+{% block content %}
+<div class="container-fluid pt-8">
+							<div class="page-header mt-0 shadow p-3">
+								<ol class="breadcrumb mb-sm-0">
+									<li class="breadcrumb-item"><a href="#">Home</a></li>
+									<li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+								</ol>
+
+							</div>
+							<div class="card shadow overflow-hidden">
+								<div class="">
+									<div class="row">
+										<div class="col-xl-2 col-lg-4 col-md-6 col-sm-6 stats">
+											<div class="text-center">
+												<p class="text-light">
+													<i class="fas fa-chart-line mr-2"></i>
+													Customers
+												</p>
+												<h2 class="text-primary text-xxl">{{ no_cust }}</h2>
+{#												<a href="#" class="btn btn-outline-primary btn-pill btn-sm">30% decrease</a>#}
+											</div>
+										</div>
+										<div class="col-xl-2 col-lg-4 col-md-6 col-sm-6 stats">
+											<div class="text-center">
+												<p class="text-light">
+												  <i class="fas fa-users mr-2"></i>
+												  Total Services
+												</p>
+												<h2 class="text-yellow text-xxl">{{ no_order }}</h2>
+{#												<a href="#" class="btn btn-outline-yellow btn-pill btn-sm">10% increase</a>#}
+											</div>
+										</div>
+										<div class="col-xl-2 col-lg-4 col-md-6 col-sm-6 stats">
+											<div class="text-center">
+												<p class="text-light">
+												  <i class="fas fa-cart-arrow-down mr-2"></i>
+												  Completed Services
+												</p>
+												<h2 class="text-warning text-xxl">{{ completed_orders }}</h2>
+{#												<a href="#" class="btn btn-outline-warning btn-pill btn-sm">9% decrease</a>#}
+											</div>
+										</div>
+										<div class="col-xl-2 col-lg-4 col-md-6 col-sm-6 stats">
+											<div class="text-center">
+												<p class="text-light">
+												  <i class="fas fa-signal mr-2"></i>
+												  Pending Services
+												</p>
+												<h2 class="text-danger text-xxl">{{ pending_orders }}</h2>
+{#												<a href="#" class="btn btn-outline-danger btn-pill btn-sm">10% decrease</a>#}
+											</div>
+										</div>
+										<div class="col-xl-2 col-lg-4 col-md-6 col-sm-6 stats">
+											<div class="text-center">
+												<p class="text-light">
+												  <i class="fas fa-dollar-sign mr-2"></i>
+												 Today Services
+												</p>
+												<h2 class="text-success text-xxl">{{ today_orders }}</h2>
+{#												<a href="#" class="btn btn-outline-success btn-pill btn-sm">5% increase</a>#}
+											</div>
+										</div>
+										<div class="col-xl-2 col-lg-4 col-md-6 col-sm-6 stats">
+											<div class="text-center">
+												<p class="text-light">
+												  <i class="fas fa-briefcase mr-2"></i>
+												  Mechanics
+												</p>
+												<h2 class="text-primary text-xxl">{{ employees }}</h2>
+{#												<a href="#" class="btn btn-outline-primary btn-pill btn-sm">View</a>#}
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+
+
+							</div>
+
+{% endblock %}

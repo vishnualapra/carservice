@@ -9,7 +9,7 @@
 							<div class="page-header mt-0 shadow p-3">
 								<ol class="breadcrumb mb-sm-0">
 									<li class="breadcrumb-item"><a href="/dashboard/">Home</a></li>
-									<li class="breadcrumb-item active" aria-current="page">Customers</li>
+									<li class="breadcrumb-item active" aria-current="page">Bookings</li>
 								</ol>
 
 							</div>
@@ -17,8 +17,8 @@
 								<div class="col-md-12">
 									<div class="card shadow">
 										<div class="card-header">
-												<h2 class="mb-0" style="float:left">Manage Customers</h2>
-<button type="button" class="btn btn-success mt-1 mb-1"  style="float:right;" data-toggle="modal" data-target="#modal-form2">Add New</button>
+												<h2 class="mb-0" style="float:left">Manage Booking</h2>
+{#<button type="button" class="btn btn-success mt-1 mb-1"  style="float:right;" data-toggle="modal" data-target="#modal-form2">Add New</button>#}
 										</div>
 										<div class="card-body">
 											<div class="table-responsive">
@@ -26,13 +26,15 @@
 													<thead>
 														<tr>
 															<th class="wd-15p">No</th>
-                                                            <th class="wd-15p">CID</th>
-															<th class="wd-15p">Name</th>
-															<th class="wd-20p">Email</th>
-															<th class="wd-15p">Phone</th>
-                                                            <th class="wd-10p">Book </th>
-															<th class="wd-10p">View/Edit</th>
-															<th class="wd-25p">Delete</th>
+                                                            <th class="wd-15p">BID</th>
+															<th class="wd-15p">service date</th>
+															<th class="wd-20p">quee No</th>
+															<th class="wd-15p">Mech ID</th>
+                                                            <th class="wd-10p">Car </th>
+															<th class="wd-10p">Customer</th>
+															<th class="wd-25p">Payment</th>
+                                                            <th class="wd-25p">Delivery</th>
+
 														</tr>
 													</thead>
 													<tbody>
@@ -454,7 +456,7 @@ var csrftoken = readCookie('csrftoken');
         var settings = {
           "async": true,
           "crossDomain": true,
-          "url": base_url + "/api/customer/",
+          "url": base_url + "/api/booking/",
           "method": "GET",
           "headers": {
             "Content-Type": "application/x-www-form-urlencoded",
@@ -472,12 +474,27 @@ var csrftoken = readCookie('csrftoken');
 $.ajax(settings).done(function (response) {
   var data = response;
     for (var i=0;i<data.length; i++){
+        var paym = data[i]['payment_received_yn']
+        var deli = data[i]['completed']
+        if(paym==true){
+            var pyy = "Paid"
+        }
+        else {
+            var pyy = "<button  type='button' class='btn btn-blue mt-1 mb-1' title='click to mark paid' onclick='makepaid("+data[i]['booking_id']+")'>Not Paid</button>"
+        }
+         if(deli==true){
+            var ppy = "Delivered"
+        }
+        else {
+            var ppy = "<button  type='button' class='btn btn-blue mt-1 mb-1' title='click to mark Delivered' onclick='deliver("+data[i]['booking_id']+")'>Not Delivered</button>"
+        }
           $('#example').DataTable().row.add([
-            i+1, "CUST"+data[i]['customer_id'], data[i]['title']+ " "+data[i]['first_name']+" "+data[i]['last_name'],data[i]['email_address'],
-               data[i]['phone_number'],
-               "<a href='/customers/"+data[i]['customer_id']+"/' type='button' class='btn btn-blue mt-1 mb-1'>Book</a>",
-              "<button type='button' class='btn btn-blue mt-1 mb-1' onclick='return assigneditvalues("+data[i]['customer_id']+");' data-toggle='modal' data-target='#modal-form' >Edit</button>",
-        "<button type='button' class='btn btn-danger mt-1 mb-1' onclick='return alrt("+data[i]['customer_id']+");'>Delete</button>"
+            i+1, "BOOK"+data[i]['booking_id'], data[i]['service_date'],data[i]['day_position'],
+               "EMPID"+data[i]['mechanic'],data[i]['car'],
+              "<a href='/customers/"+data[i]['customer']+"/' target='_blank' type='button' class='btn btn-blue mt-1 mb-1'>View</a>",
+               pyy,ppy,
+
+
             ]).draw();
     }
 
@@ -675,8 +692,63 @@ $.ajax(settings).done(function (response) {
 });
 
 });
+function makepaid(id) {
+    var settings = {
+  "async": true,
+  "crossDomain": true,
+  "url": base_url+"/api/paid/"+id+"/",
+  "method": "POST",
+  "headers": {
+    "Content-Type": "application/x-www-form-urlencoded",
+    "Authorization": "Basic YWRtaW46YWRtaW4xMjM=",
+    "Accept": "*/*",
+    "Cache-Control": "no-cache",
+    "Host": base_url,
+    "Accept-Encoding": "gzip, deflate",
+    "Content-Length": "85",
+    "Cookie": "csrftoken=sSWIzSN6NR7qDiI79UHOi6ZxCvyGwGBJOeXDrWOfIbm9Eul8TFpca8S37QPHZFjr",
+    "Connection": "keep-alive",
+    "cache-control": "no-cache",
+      "X-CSRFToken":csrftoken,
+  },
+  "data": {
+  }
+}
 
+$.ajax(settings).done(function (response) {
+    getall();
+  swal("Success!", "Payment Status changed successfully.", "success");
 
+});
+
+}
+function deliver(id) {
+
+    var settings = {
+  "async": true,
+  "crossDomain": true,
+  "url": base_url+"/api/delivered/"+id+"/",
+  "method": "POST",
+  "headers": {
+    "Content-Type": "application/x-www-form-urlencoded",
+    {#"Authorization": "Basic YWRtaW46YWRtaW4xMjM=",#}
+    "Accept": "*/*",
+    "Cache-Control": "no-cache",
+    "Host": base_url,
+    "Accept-Encoding": "gzip, deflate",
+    "Cookie": "csrftoken=sSWIzSN6NR7qDiI79UHOi6ZxCvyGwGBJOeXDrWOfIbm9Eul8TFpca8S37QPHZFjr",
+    "Content-Length": "",
+    "Connection": "keep-alive",
+    "cache-control": "no-cache",
+      "X-CSRFToken":csrftoken,
+  }
+}
+
+$.ajax(settings).done(function (response) {
+   getall();
+  swal("Success!", "Order Status Changed successfully.", "success");
+});
+}
     getall();
     </script>
     {% endblock %}

@@ -9,7 +9,7 @@
 							<div class="page-header mt-0 shadow p-3">
 								<ol class="breadcrumb mb-sm-0">
 									<li class="breadcrumb-item"><a href="/dashboard/">Home</a></li>
-									<li class="breadcrumb-item active" aria-current="page">Mechanics</li>
+									<li class="breadcrumb-item active" aria-current="page">Manufacturer</li>
 								</ol>
 
 							</div>
@@ -17,7 +17,7 @@
 								<div class="col-md-12">
 									<div class="card shadow">
 										<div class="card-header">
-												<h2 class="mb-0" style="float:left">Manage Mechanics</h2>
+												<h2 class="mb-0" style="float:left">Manage Manufactures</h2>
 <button type="button" class="btn btn-success mt-1 mb-1"  style="float:right;" data-toggle="modal" data-target="#modal-form2">Add New</button>
 										</div>
 										<div class="card-body">
@@ -26,9 +26,10 @@
 													<thead>
 														<tr>
 															<th class="wd-15p">No</th>
-															<th class="wd-15p">MechanicID</th>
-															<th class="wd-20p">Mechanic Name</th>
+															<th class="wd-15p">Manufacturer Code</th>
+															<th class="wd-20p">Manufacturer Name</th>
 															<th class="wd-15p">Other Details</th>
+                                                            <th class="wd-10p">View Models</th>
 															<th class="wd-10p">Edit</th>
 															<th class="wd-25p">Delete</th>
 														</tr>
@@ -55,15 +56,23 @@
 
 																<div class="card-body px-lg-5 py-lg-5">
 																	<div class="text-center text-white mb-4 h2">
-																		Edit Mechanic
+																		Edit Manufacturer
 																	</div>
 																	<form >
+                                                                        <div class="form-group mb-3">
+																			<div class="input-group input-group-alternative">
+																				<div class="input-group-prepend">
+																					<span class="input-group-text"><i class="ni ni-email-83"></i></span>
+																				</div>
+                                                                                <input class="form-control" name="eid" readonly id="eid" placeholder="code" type="number">
+
+																			</div>
+                                                                        </div>
 																		<div class="form-group mb-3">
 																			<div class="input-group input-group-alternative">
 																				<div class="input-group-prepend">
 																					<span class="input-group-text"><i class="ni ni-email-83"></i></span>
 																				</div>
-                                                                                <input class="form-control" name="eid" id="eid" placeholder="eid" type="number" readonly hidden>
 																				<input class="form-control" name="emechanic_name" id="emechanic_name" placeholder="Name" type="text">
 																			</div>
 																		</div>
@@ -98,16 +107,25 @@
 
 																<div class="card-body px-lg-5 py-lg-5">
 																	<div class="text-center text-white mb-4 h2">
-																		Add New Mechanic
+																		Add New Manufacturer
 																	</div>
 																	<form>
+                                                                        <div class="form-group mb-3">
+																			<div class="input-group input-group-alternative">
+																				<div class="input-group-prepend">
+																					<span class="input-group-text"><i class="ni ni-email-83"></i></span>
+																				</div>
+
+																				<input class="form-control" name="manu_id" id="manu_id" placeholder="Manufacturer Code" type="number" required >
+																			</div>
+																		</div>
 																		<div class="form-group mb-3">
 																			<div class="input-group input-group-alternative">
 																				<div class="input-group-prepend">
 																					<span class="input-group-text"><i class="ni ni-email-83"></i></span>
 																				</div>
 
-																				<input class="form-control" name="amechanic_name" id="amechanic_name" placeholder="Name" type="text" required >
+																				<input class="form-control" name="manu_name" id="manu_name" placeholder="Manufacturer Name" type="text" required >
 																			</div>
 																		</div>
 																		<div class="form-group">
@@ -115,7 +133,7 @@
 																				<div class="input-group-prepend">
 																					<span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
 																				</div>
-                                                                                <textarea  class="form-control" name="amechanic_details" id="amechanic_details" placeholder="Other Details" rows="4" required></textarea>
+                                                                                <textarea  class="form-control" name="manu_details" id="manu_details" placeholder="Other Details" rows="4" required></textarea>
 																			</div>
 																		</div>
 
@@ -165,7 +183,7 @@
 		}, function(isConfirm) {
 			if (isConfirm) {
 			   deleteitem(frm);
-			   swal("Deleted!", "Mechanic Profile has been deleted.", "success");
+			   swal("Deleted!", "Manufacturer has been deleted.", "success");
 
 			}
 
@@ -236,7 +254,7 @@ var csrftoken = readCookie('csrftoken');
         var settings = {
           "async": true,
           "crossDomain": true,
-          "url": base_url + "/api/mechanic/",
+          "url": base_url + "/api/manufacturer/",
           "method": "GET",
           "headers": {
             "Content-Type": "application/x-www-form-urlencoded",
@@ -255,9 +273,10 @@ $.ajax(settings).done(function (response) {
   var data = response;
     for (var i=0;i<data.length; i++){
           $('#example').DataTable().row.add([
-            i+1,"EMPID"+ data[i]['mechanic_id'], data[i]['mechanic_name'],data[i]['other_mechanic_details'],
-              "<button type='button' class='btn btn-blue mt-1 mb-1' onclick='return assigneditvalues("+data[i]['mechanic_id']+");' data-toggle='modal' data-target='#modal-form' >Edit</button>",
-        "<button type='button' class='btn btn-danger mt-1 mb-1' onclick='return alrt("+data[i]['mechanic_id']+");'>Delete</button>"
+            i+1, data[i]['manufacturer_code'], data[i]['manufacturer_name'],data[i]['manufacturer_detail'],
+               "<a href='/manufacturer/"+data[i]['manufacturer_code']+"/' type='button' class='btn btn-blue mt-1 mb-1'>View</a>",
+              "<button type='button' class='btn btn-blue mt-1 mb-1' onclick='return assigneditvalues("+data[i]['manufacturer_code']+");' data-toggle='modal' data-target='#modal-form' >Edit</button>",
+        "<button type='button' class='btn btn-danger mt-1 mb-1' onclick='return alrt("+data[i]['manufacturer_code']+");'>Delete</button>"
             ]).draw();
     }
 
@@ -281,14 +300,12 @@ xhr.addEventListener("readystatechange", function () {
 });
 
 
-xhr.open("DELETE", "http://127.0.0.1:8000/api/mechanic/"+id+"/");
+xhr.open("DELETE", base_url+"/api/manufacturer/"+id+"/");
 xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 {#xhr.setRequestHeader("Authorization", "Basic YWRtaW46YWRtaW4xMjM=");#}
-xhr.setRequestHeader("User-Agent", "PostmanRuntime/7.16.3");
 xhr.setRequestHeader("Accept", "*/*");
 xhr.setRequestHeader("Cache-Control", "no-cache");
-xhr.setRequestHeader("Postman-Token", "888320cf-b3db-469f-a521-afb6bfdc8bec,42efe547-20fa-40e4-a398-37d8e5d15c8d");
-xhr.setRequestHeader("Host", "127.0.0.1:8000");
+xhr.setRequestHeader("Host", base_url);
 xhr.setRequestHeader("Accept-Encoding", "gzip, deflate");
 xhr.setRequestHeader("Cookie", "csrftoken=sSWIzSN6NR7qDiI79UHOi6ZxCvyGwGBJOeXDrWOfIbm9Eul8TFpca8S37QPHZFjr");
 xhr.setRequestHeader("Content-Length", "");
@@ -305,7 +322,7 @@ xhr.send(data);
         var settings = {
   "async": true,
   "crossDomain": true,
-  "url": base_url+"/api/mechanic/"+id+"/",
+  "url": base_url+"/api/manufacturer/"+id+"/",
   "method": "GET",
   "headers": {
     "Content-Type": "application/x-www-form-urlencoded",
@@ -322,9 +339,9 @@ xhr.send(data);
 }
 
 $.ajax(settings).done(function (response) {
-        document.getElementById('eid').value = response['mechanic_id'];
-        document.getElementById('emechanic_name').value = response['mechanic_name'];
-        document.getElementById('emechanic_details').innerHTML = response['other_mechanic_details'];
+        document.getElementById('eid').value = response['manufacturer_code'];
+        document.getElementById('emechanic_name').value = response['manufacturer_name'];
+        document.getElementById('emechanic_details').innerHTML = response['manufacturer_detail'];
 });
 
     }
@@ -338,7 +355,7 @@ $("#editsave").click(function(){
   var settings = {
   "async": true,
   "crossDomain": true,
-  "url": base_url+"/api/mechanic/"+id+"/",
+  "url": base_url+"/api/manufacturer/"+id+"/",
   "method": "PUT",
   "headers": {
     "Content-Type": "application/x-www-form-urlencoded",
@@ -354,15 +371,16 @@ $("#editsave").click(function(){
       "X-CSRFToken":csrftoken,
   },
    "data": {
-    "mechanic_name": name,
-    "other_mechanic_details": details,
+    "manufacturer_name": name,
+    "manufacturer_detail": details,
+       "manufacturer_code":id,
   }
 }
 
 $.ajax(settings).done(function (response) {
      document.getElementById("closemodel").click();
      getall();
-    swal("Updated!", "Mechanic Profile has been updated.", "success");
+    swal("Updated!", "Manufacturer details has been updated.", "success");
 });
 
 });
@@ -371,12 +389,13 @@ $.ajax(settings).done(function (response) {
 
 
     $("#addsave").click(function(){
-  var name = document.getElementById('amechanic_name').value;
-  var details = $('textarea#amechanic_details').val();
+        var code = document.getElementById('manu_id').value;
+  var name = document.getElementById('manu_name').value;
+  var details = $('textarea#manu_details').val();
   var settings = {
   "async": true,
   "crossDomain": true,
-  "url": base_url+"/api/mechanic/",
+  "url": base_url+"/api/manufacturer/",
   "method": "POST",
   "headers": {
     "Content-Type": "application/x-www-form-urlencoded",
@@ -392,17 +411,19 @@ $.ajax(settings).done(function (response) {
       "X-CSRFToken":csrftoken,
   },
    "data": {
-    "mechanic_name": name,
-    "other_mechanic_details": details,
+    "manufacturer_name": name,
+       "manufacturer_code":code,
+    "manufacturer_detail": details,
   }
 }
 
 $.ajax(settings).done(function (response) {
      document.getElementById("closemodel2").click();
      getall();
-     document.getElementById('amechanic_name').value = "";
-    $('#amechanic_details').val('');
-    swal("Saved!", "Mechanic Profile has been added.", "success");
+     document.getElementById('manu_name').value = "";
+      document.getElementById('manu_id').value = "";
+    $('#manu_details').val('');
+    swal("Saved!", "Manufacturer has been added.", "success");
     return false;
 });
 

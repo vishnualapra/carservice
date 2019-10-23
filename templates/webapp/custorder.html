@@ -9,7 +9,10 @@
 							<div class="page-header mt-0 shadow p-3">
 								<ol class="breadcrumb mb-sm-0">
 									<li class="breadcrumb-item"><a href="/dashboard/">Home</a></li>
-									<li class="breadcrumb-item active" aria-current="page">Customers</li>
+                                    <li class="breadcrumb-item"><a href="/customers/">Customers</a></li>
+									<li class="breadcrumb-item active" aria-current="page">Profile & Order</li>
+                                    <li class="breadcrumb-item active" aria-current="page">{{ profile.titke }} {{ profile.first_name }} {{ profile.last_name }} |
+                                    {{ profile.email_address }} | {{ profile.phone_number }}</li>
 								</ol>
 
 							</div>
@@ -17,7 +20,7 @@
 								<div class="col-md-12">
 									<div class="card shadow">
 										<div class="card-header">
-												<h2 class="mb-0" style="float:left">Manage Customers</h2>
+												<h2 class="mb-0" style="float:left">Cars</h2>
 <button type="button" class="btn btn-success mt-1 mb-1"  style="float:right;" data-toggle="modal" data-target="#modal-form2">Add New</button>
 										</div>
 										<div class="card-body">
@@ -26,11 +29,11 @@
 													<thead>
 														<tr>
 															<th class="wd-15p">No</th>
-                                                            <th class="wd-15p">CID</th>
-															<th class="wd-15p">Name</th>
-															<th class="wd-20p">Email</th>
-															<th class="wd-15p">Phone</th>
-                                                            <th class="wd-10p">Book </th>
+                                                            <th class="wd-15p">Licence No</th>
+															<th class="wd-15p">Current Milage</th>
+															<th class="wd-20p">Engine Size</th>
+															<th class="wd-15p">Details</th>
+                                                            <th class="wd-10p">Schedule Serice</th>
 															<th class="wd-10p">Edit</th>
 															<th class="wd-25p">Delete</th>
 														</tr>
@@ -60,24 +63,13 @@
 																		Edit Manufacturer
 																	</div>
 																	<form >
-                                                                        <input class="form-control" name="id" id="eid" placeholder="nu" type="number" readonly hidden required >
-                                                                        <div class="form-group mb-3">
+                                                                       <div class="form-group mb-3">
 																			<div class="input-group input-group-alternative">
 																				<div class="input-group-prepend">
 																					<span class="input-group-text"><i class="ni ni-email-83"></i></span>
 																				</div>
 
-                                                                                <select class="form-control" name="salutation" id="esalutation" required >
-                                                                                    <option selected disabled>Title</option>
-                                                                                    <option value="Mr.">Mr.</option>
-                                                                                    <option value="Mrs.">Mrs.</option>
-                                                                                    <option value="MissMs.">MissMs.</option>
-                                                                                    <option value="Dr.">Dr.</option>
-                                                                                    <option value="Prof.">Prof.</option>
-                                                                                    <option value="MissMs.">Rev.</option>
-
-
-                                                                                </select>
+																				<input class="form-control" name="firstname" id="elicence" placeholder="Licence Number" type="number" required disabled >
 																			</div>
 																		</div>
                                                                          <div class="form-group mb-3">
@@ -86,98 +78,46 @@
 																					<span class="input-group-text"><i class="ni ni-email-83"></i></span>
 																				</div>
 
-																				<input class="form-control" name="firstname" id="efirstname" placeholder="firstname" type="text" required >
+																				<input class="form-control" name="lastname" id="emilage" placeholder="Milage" type="number" required >
 																			</div>
 																		</div>
-                                                                         <div class="form-group mb-3">
-																			<div class="input-group input-group-alternative">
-																				<div class="input-group-prepend">
-																					<span class="input-group-text"><i class="ni ni-email-83"></i></span>
-																				</div>
 
-																				<input class="form-control" name="lastname" id="elastname" placeholder="lastname" type="text" required >
-																			</div>
-																		</div>
                                                                         <div class="form-group mb-3">
 																			<div class="input-group input-group-alternative">
 																				<div class="input-group-prepend">
 																					<span class="input-group-text"><i class="ni ni-email-83"></i></span>
 																				</div>
 
-                                                                                <select class="form-control" name="gender" id="egender" required >
-                                                                                    <option selected disabled>Gender</option>
-                                                                                    <option value="Male">Male</option>
-                                                                                    <option value="Female.">Female</option>
-                                                                                    <option value="Other">Other</option>
-
-
-
-                                                                                </select>
+																				<input class="form-control" name="email" id="eengine" placeholder="Engine Size" type="text" required >
 																			</div>
 																		</div>
-                                                                        <div class="form-group mb-3">
+{#                                                                         <div class="form-group mb-3">#}
+{#																			<div class="input-group input-group-alternative">#}
+{#																				<div class="input-group-prepend">#}
+{#																					<span class="input-group-text"><i class="ni ni-email-83"></i></span>#}
+{#																				</div>#}
+{##}
+{#                                                                                <select class="form-control" name="gender" id="emanufacturer" onchange="getmodel();" required >#}
+{#                                                                                    <option selected disabled>Select Manufacturer</option>#}
+{##}
+{##}
+{##}
+{#                                                                                </select>#}
+{#																			</div>#}
+{#																		</div>#}
+                                                                         <div class="form-group mb-3" hidden>
 																			<div class="input-group input-group-alternative">
 																				<div class="input-group-prepend">
 																					<span class="input-group-text"><i class="ni ni-email-83"></i></span>
 																				</div>
 
-																				<input class="form-control" name="email" id="eemail" placeholder="email" type="email" required >
-																			</div>
-																		</div>
-																		<div class="form-group mb-3">
-																			<div class="input-group input-group-alternative">
-																				<div class="input-group-prepend">
-																					<span class="input-group-text"><i class="ni ni-email-83"></i></span>
-																				</div>
+                                                                                <input class="form-control" name="gender" id="emodel" type="number" disabled hidden required >
 
-																				<input class="form-control" name="phone" id="ephone" placeholder="phone" type="number" required >
-																			</div>
-																		</div>
-                                                                        <div class="form-group mb-3">
-																			<div class="input-group input-group-alternative">
-																				<div class="input-group-prepend">
-																					<span class="input-group-text"><i class="ni ni-email-83"></i></span>
-																				</div>
 
-																				<input class="form-control" name="add1" id="eadd1" placeholder="Address Line 1" type="text" required >
-																			</div>
-																		</div>
-                                                                        <div class="form-group mb-3">
-																			<div class="input-group input-group-alternative">
-																				<div class="input-group-prepend">
-																					<span class="input-group-text"><i class="ni ni-email-83"></i></span>
-																				</div>
 
-																				<input class="form-control" name="add2" id="eadd2" placeholder="Address Line 2" type="text" required >
 																			</div>
 																		</div>
-                                                                        <div class="form-group mb-3">
-																			<div class="input-group input-group-alternative">
-																				<div class="input-group-prepend">
-																					<span class="input-group-text"><i class="ni ni-email-83"></i></span>
-																				</div>
 
-																				<input class="form-control" name="add3" id="eadd3" placeholder="Address Line 3" type="text" required >
-																			</div>
-																		</div>
-                                                                        <div class="form-group mb-3">
-																			<div class="input-group input-group-alternative">
-																				<div class="input-group-prepend">
-																					<span class="input-group-text"><i class="ni ni-email-83"></i></span>
-																				</div>
-
-																				<input class="form-control" name="city" id="ecity" placeholder="City" type="text" required >
-																			</div>
-																		</div>
-                                                                        <div class="form-group mb-3">
-																			<div class="input-group input-group-alternative">
-																				<div class="input-group-prepend">
-																					<span class="input-group-text"><i class="ni ni-email-83"></i></span>
-																				</div>
-
-																				<input class="form-control" name="state" id="estate" placeholder="State" type="text" required >
-																			</div>
-																		</div>
 																		<div class="form-group">
 																			<div class="input-group input-group-alternative">
 																				<div class="input-group-prepend">
@@ -208,23 +148,47 @@
 
 																<div class="card-body px-lg-5 py-lg-5">
 																	<div class="text-center text-white mb-4 h2">
-																		Add New Customer
+																		Add New Car
 																	</div>
 																	<form id="addform">
+
                                                                          <div class="form-group mb-3">
 																			<div class="input-group input-group-alternative">
 																				<div class="input-group-prepend">
 																					<span class="input-group-text"><i class="ni ni-email-83"></i></span>
 																				</div>
 
-                                                                                <select class="form-control" name="salutation" id="salutation" required >
-                                                                                    <option selected disabled>Title</option>
-                                                                                    <option value="Mr.">Mr.</option>
-                                                                                    <option value="Mrs.">Mrs.</option>
-                                                                                    <option value="MissMs.">MissMs.</option>
-                                                                                    <option value="Dr.">Dr.</option>
-                                                                                    <option value="Prof.">Prof.</option>
-                                                                                    <option value="MissMs.">Rev.</option>
+																				<input class="form-control" name="firstname" id="licence" placeholder="Licence Number" type="number" required >
+																			</div>
+																		</div>
+                                                                         <div class="form-group mb-3">
+																			<div class="input-group input-group-alternative">
+																				<div class="input-group-prepend">
+																					<span class="input-group-text"><i class="ni ni-email-83"></i></span>
+																				</div>
+
+																				<input class="form-control" name="lastname" id="milage" placeholder="Milage" type="number" required >
+																			</div>
+																		</div>
+
+                                                                        <div class="form-group mb-3">
+																			<div class="input-group input-group-alternative">
+																				<div class="input-group-prepend">
+																					<span class="input-group-text"><i class="ni ni-email-83"></i></span>
+																				</div>
+
+																				<input class="form-control" name="email" id="engine" placeholder="Engine Size" type="text" required >
+																			</div>
+																		</div>
+                                                                         <div class="form-group mb-3">
+																			<div class="input-group input-group-alternative">
+																				<div class="input-group-prepend">
+																					<span class="input-group-text"><i class="ni ni-email-83"></i></span>
+																				</div>
+
+                                                                                <select class="form-control" name="gender" id="manufacturer" onchange="getmodel();" required >
+                                                                                    <option selected disabled>Select Manufacturer</option>
+
 
 
                                                                                 </select>
@@ -236,98 +200,13 @@
 																					<span class="input-group-text"><i class="ni ni-email-83"></i></span>
 																				</div>
 
-																				<input class="form-control" name="firstname" id="firstname" placeholder="firstname" type="text" required >
-																			</div>
-																		</div>
-                                                                         <div class="form-group mb-3">
-																			<div class="input-group input-group-alternative">
-																				<div class="input-group-prepend">
-																					<span class="input-group-text"><i class="ni ni-email-83"></i></span>
-																				</div>
-
-																				<input class="form-control" name="lastname" id="lastname" placeholder="lastname" type="text" required >
-																			</div>
-																		</div>
-                                                                        <div class="form-group mb-3">
-																			<div class="input-group input-group-alternative">
-																				<div class="input-group-prepend">
-																					<span class="input-group-text"><i class="ni ni-email-83"></i></span>
-																				</div>
-
-                                                                                <select class="form-control" name="gender" id="gender" required >
-                                                                                    <option selected disabled>Gender</option>
-                                                                                    <option value="Male">Male</option>
-                                                                                    <option value="Female.">Female</option>
-                                                                                    <option value="Other">Other</option>
-
-
+                                                                                <select class="form-control" name="gender" id="model" required >
+                                                                                    <option selected disabled>Select Model</option>
 
                                                                                 </select>
 																			</div>
 																		</div>
-                                                                        <div class="form-group mb-3">
-																			<div class="input-group input-group-alternative">
-																				<div class="input-group-prepend">
-																					<span class="input-group-text"><i class="ni ni-email-83"></i></span>
-																				</div>
 
-																				<input class="form-control" name="email" id="email" placeholder="email" type="email" required >
-																			</div>
-																		</div>
-																		<div class="form-group mb-3">
-																			<div class="input-group input-group-alternative">
-																				<div class="input-group-prepend">
-																					<span class="input-group-text"><i class="ni ni-email-83"></i></span>
-																				</div>
-
-																				<input class="form-control" name="phone" id="phone" placeholder="phone" type="number" required >
-																			</div>
-																		</div>
-                                                                        <div class="form-group mb-3">
-																			<div class="input-group input-group-alternative">
-																				<div class="input-group-prepend">
-																					<span class="input-group-text"><i class="ni ni-email-83"></i></span>
-																				</div>
-
-																				<input class="form-control" name="add1" id="add1" placeholder="Address Line 1" type="text" required >
-																			</div>
-																		</div>
-                                                                        <div class="form-group mb-3">
-																			<div class="input-group input-group-alternative">
-																				<div class="input-group-prepend">
-																					<span class="input-group-text"><i class="ni ni-email-83"></i></span>
-																				</div>
-
-																				<input class="form-control" name="add2" id="add2" placeholder="Address Line 2" type="text" required >
-																			</div>
-																		</div>
-                                                                        <div class="form-group mb-3">
-																			<div class="input-group input-group-alternative">
-																				<div class="input-group-prepend">
-																					<span class="input-group-text"><i class="ni ni-email-83"></i></span>
-																				</div>
-
-																				<input class="form-control" name="add3" id="add3" placeholder="Address Line 3" type="text" required >
-																			</div>
-																		</div>
-                                                                        <div class="form-group mb-3">
-																			<div class="input-group input-group-alternative">
-																				<div class="input-group-prepend">
-																					<span class="input-group-text"><i class="ni ni-email-83"></i></span>
-																				</div>
-
-																				<input class="form-control" name="city" id="city" placeholder="City" type="text" required >
-																			</div>
-																		</div>
-                                                                        <div class="form-group mb-3">
-																			<div class="input-group input-group-alternative">
-																				<div class="input-group-prepend">
-																					<span class="input-group-text"><i class="ni ni-email-83"></i></span>
-																				</div>
-
-																				<input class="form-control" name="state" id="state" placeholder="State" type="text" required >
-																			</div>
-																		</div>
 																		<div class="form-group">
 																			<div class="input-group input-group-alternative">
 																				<div class="input-group-prepend">
@@ -348,6 +227,72 @@
 													</div>
 												</div>
 											</div>
+
+
+
+    <div class="modal fade" id="modal-form3" tabindex="-1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
+												<div class="modal-dialog modal- modal-dialog-centered modal-sm" role="document">
+													<div class="modal-content">
+														<div class="modal-body p-0">
+															<div class="card bg-primary shadow border-0 mb-0">
+
+																<div class="card-body px-lg-5 py-lg-5">
+																	<div class="text-center text-white mb-4 h2">
+																		Booking <p id="dt">
+
+                                                                    </p>
+																	</div>
+																	<form id="bookform">
+
+                                                                         <div class="form-group mb-3">
+																			<div class="input-group input-group-alternative">
+																				<div class="input-group-prepend">
+																					<span class="input-group-text"><i class="ni ni-email-83"></i></span>
+																				</div>
+
+                                                                                <select class="form-control" name="firstname" id="mechanic"  type="number" required >
+                                                                                    <option selected disabled>Select Mechanic</option>
+                                                                                </select>
+																			</div>
+																		</div>
+                                                                         <div class="form-group mb-3">
+																			<div class="input-group input-group-alternative">
+																				<div class="input-group-prepend">
+																					<span class="input-group-text"><i class="ni ni-email-83"></i></span>
+																				</div>
+
+                                                                                <select class="form-control" name="firstname" id="payment"  type="number" required >
+                                                                                    <option selected value="false">Not Paid</option>
+                                                                                     <option  value="true">Paid</option>
+                                                                                </select>
+																			</div>
+																		</div>
+                                                                         <input type="date" id="servicedate" readonly hidden>
+                                                                        <input type="number" id="position" readonly hidden>
+                                                                        <input type="number" id="ocar" readonly hidden>
+                                                                        <input type="number" id="ocust" readonly hidden>
+
+																		<div class="form-group">
+																			<div class="input-group input-group-alternative">
+																				<div class="input-group-prepend">
+																					<span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+																				</div>
+                                                                                <textarea  class="form-control" name="details" id="bdetails" placeholder="Other Details" rows="4" required></textarea>
+																			</div>
+																		</div>
+
+																		<div class="text-center">
+																			<button type="button" class="btn btn-white my-4" id="booksave">Save</button>
+                                                                            <button type="button" class="btn btn-link text-white ml-auto" data-dismiss="modal" id="closemodel3">Close</button>
+																		</div>
+																	</form>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+    <input type="number" value="{{ profile.customer_id }}" id="userid" hidden readonly>
 {% endblock %}
 {% block datatablejs %}
     <!-- Data table -->
@@ -383,7 +328,7 @@
 		}, function(isConfirm) {
 			if (isConfirm) {
 			   deleteitem(frm);
-			   swal("Deleted!", "Customer has been deleted.", "success");
+			   swal("Deleted!", "Car has been deleted.", "success");
 
 			}
 
@@ -454,7 +399,7 @@ var csrftoken = readCookie('csrftoken');
         var settings = {
           "async": true,
           "crossDomain": true,
-          "url": base_url + "/api/customer/",
+          "url": base_url + "/api/filter_car/"+document.getElementById('userid').value+"/",
           "method": "GET",
           "headers": {
             "Content-Type": "application/x-www-form-urlencoded",
@@ -472,12 +417,18 @@ var csrftoken = readCookie('csrftoken');
 $.ajax(settings).done(function (response) {
   var data = response;
     for (var i=0;i<data.length; i++){
+        if (data[i]['on_service'] == true){
+            var booking = "Service Ongoing"
+        }
+        else {
+            var  booking = "<button target='_blank' onclick='checkavail("+data[i]['model']+","+data[i]['license_number']+","+data[i]['customer']+");' type='button' class='btn btn-blue mt-1 mb-1'>Schedule</button>"
+        }
           $('#example').DataTable().row.add([
-            i+1, "CUST"+data[i]['customer_id'], data[i]['title']+ " "+data[i]['first_name']+" "+data[i]['last_name'],data[i]['email_address'],
-               data[i]['phone_number'],
-               "<a href='/customers/"+data[i]['customer_id']+"/' target='_blank' type='button' class='btn btn-blue mt-1 mb-1'>Book</a>",
-              "<button type='button' class='btn btn-blue mt-1 mb-1' onclick='return assigneditvalues("+data[i]['customer_id']+");' data-toggle='modal' data-target='#modal-form' >Edit</button>",
-        "<button type='button' class='btn btn-danger mt-1 mb-1' onclick='return alrt("+data[i]['customer_id']+");'>Delete</button>"
+            i+1, data[i]['license_number'], data[i]['current_milage'],data[i]['engine_size'],
+               data[i]['other_car_details'],
+               booking,
+              "<button type='button' class='btn btn-blue mt-1 mb-1' onclick='return assigneditvalues("+data[i]['license_number']+");' data-toggle='modal' data-target='#modal-form' >Edit</button>",
+        "<button type='button' class='btn btn-danger mt-1 mb-1' onclick='return alrt("+data[i]['license_number']+");'>Delete</button>"
             ]).draw();
     }
 
@@ -501,7 +452,7 @@ xhr.addEventListener("readystatechange", function () {
 });
 
 
-xhr.open("DELETE", base_url+"/api/customer/"+id+"/");
+xhr.open("DELETE", base_url+"/api/car/"+id+"/");
 xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 {#xhr.setRequestHeader("Authorization", "Basic YWRtaW46YWRtaW4xMjM=");#}
 xhr.setRequestHeader("Accept", "*/*");
@@ -523,7 +474,7 @@ xhr.send(data);
         var settings = {
   "async": true,
   "crossDomain": true,
-  "url": base_url+"/api/customer/"+id+"/",
+  "url": base_url+"/api/car/"+id+"/",
   "method": "GET",
   "headers": {
     "Content-Type": "application/x-www-form-urlencoded",
@@ -540,19 +491,13 @@ xhr.send(data);
 }
 
 $.ajax(settings).done(function (response) {
-        document.getElementById('eid').value = response['customer_id'];
-        document.getElementById('esalutation').value = response['title'];
-        document.getElementById('efirstname').value = response['first_name'];
-        document.getElementById('elastname').value = response['last_name'];
-        document.getElementById('egender').value = response['gender'];
-        document.getElementById('eemail').value = response['email_address'];
-        document.getElementById('ephone').value = response['phone_number'];
-        document.getElementById('eadd1').value = response['address_line_1'];
-        document.getElementById('eadd2').value = response['address_line_2'];
-        document.getElementById('eadd3').value = response['address_line_3'];
-        document.getElementById('ecity').value = response['city'];
-         document.getElementById('estate').value = response['state'];
-        document.getElementById('edetails').innerHTML = response['other_customer_details'];
+    console.log(response);
+     document.getElementById('elicence').value = response['license_number'];
+   document.getElementById('emilage').value = response['current_milage'];
+   document.getElementById('eengine').value = response['engine_size'];
+   document.getElementById('emodel').value = response['model'];
+    document.getElementById('edetails').innerHTML = response['other_car_details'];
+
 });
 
     }
@@ -560,24 +505,17 @@ $.ajax(settings).done(function (response) {
 
 
 $("#editsave").click(function(){
-  var id = document.getElementById('eid').value;
-  var title = document.getElementById('esalutation').value;
-  var fname = document.getElementById('efirstname').value;
-   var lname = document.getElementById('elastname').value;
-   var gender = document.getElementById('egender').value;
-    var email = document.getElementById('eemail').value;
-    var phone = document.getElementById('ephone').value;
-    var add1 = document.getElementById('eadd1').value;
-    var add2 = document.getElementById('eadd2').value;
-    var add3 = document.getElementById('eadd3').value;
-    var city = document.getElementById('ecity').value;
-    var state = document.getElementById('estate').value;
+   var licence = document.getElementById('elicence').value;
+   var milage = document.getElementById('emilage').value;
+   var engine = document.getElementById('eengine').value;
+    var model = document.getElementById('emodel').value;
+    var customer = document.getElementById('userid').value;
   var details = $('textarea#edetails').val();
   {#alert(id+title+fname+lname+gender+email+phone+add1+add2+add3+city+state+details);#}
   var settings = {
   "async": true,
   "crossDomain": true,
-  "url": base_url+"/api/customer/"+id+"/",
+  "url": base_url+"/api/car/"+licence+"/",
   "method": "PUT",
   "headers": {
     "Content-Type": "application/x-www-form-urlencoded",
@@ -593,25 +531,19 @@ $("#editsave").click(function(){
       "X-CSRFToken":csrftoken,
   },
    "data": {
-   "title": title,
-       "first_name":fname,
-       "last_name":lname,
-       "gender":gender,
-       "email_address":email,
-        "phone_number":phone,
-       "address_line_1":add1,
-       "address_line_2":add2,
-       "address_line_3":add3,
-       "city":city,
-       "state":state,
-    "other_customer_details": details,
+   "license_number": licence,
+       "current_milage":milage,
+       "engine_size":engine,
+       "model":model,
+       "customer":customer,
+    "other_car_details": details,
   }
 }
 
 $.ajax(settings).done(function (response) {
      document.getElementById("closemodel").click();
      getall();
-    swal("Updated!", "Customer details has been updated.", "success");
+    swal("Updated!", "Car details has been updated.", "success");
 });
 
 });
@@ -620,22 +552,16 @@ $.ajax(settings).done(function (response) {
 
 
     $("#addsave").click(function(){
-        var title = document.getElementById('salutation').value;
-  var fname = document.getElementById('firstname').value;
-   var lname = document.getElementById('lastname').value;
-   var gender = document.getElementById('gender').value;
-    var email = document.getElementById('email').value;
-    var phone = document.getElementById('phone').value;
-    var add1 = document.getElementById('add1').value;
-    var add2 = document.getElementById('add2').value;
-    var add3 = document.getElementById('add3').value;
-    var city = document.getElementById('city').value;
-    var state = document.getElementById('state').value;
+  var licence = document.getElementById('licence').value;
+   var milage = document.getElementById('milage').value;
+   var engine = document.getElementById('engine').value;
+    var model = document.getElementById('model').value;
+    var customer = document.getElementById('userid').value;
   var details = $('textarea#details').val();
   var settings = {
   "async": true,
   "crossDomain": true,
-  "url": base_url+"/api/customer/",
+  "url": base_url+"/api/car/",
   "method": "POST",
   "headers": {
     "Content-Type": "application/x-www-form-urlencoded",
@@ -651,18 +577,12 @@ $.ajax(settings).done(function (response) {
       "X-CSRFToken":csrftoken,
   },
    "data": {
-    "title": title,
-       "first_name":fname,
-       "last_name":lname,
-       "gender":gender,
-       "email_address":email,
-        "phone_number":phone,
-       "address_line_1":add1,
-       "address_line_2":add2,
-       "address_line_3":add3,
-       "city":city,
-       "state":state,
-    "other_customer_details": details,
+    "license_number": licence,
+       "current_milage":milage,
+       "engine_size":engine,
+       "model":model,
+       "customer":customer,
+    "other_car_details": details,
   }
 }
 
@@ -670,11 +590,241 @@ $.ajax(settings).done(function (response) {
      document.getElementById("closemodel2").click();
      getall();
      $('#addform')[0].reset();
-    swal("Saved!", "Customer has been added.", "success");
+    swal("Saved!", "Car has been added.", "success");
     return false;
 });
 
+
 });
+
+
+    function getmanufacturer() {
+
+
+        var settings = {
+  "async": true,
+  "crossDomain": true,
+  "url": base_url+"/api/manufacturer/",
+  "method": "GET",
+  "headers": {
+    "Content-Type": "application/x-www-form-urlencoded",
+    {#"Authorization": "Basic YWRtaW46YWRtaW4xMjM=",#}
+    "Accept": "*/*",
+    "Cache-Control": "no-cache",
+    "Host": base_url,
+    "Accept-Encoding": "gzip, deflate",
+    "Cookie": "csrftoken=sSWIzSN6NR7qDiI79UHOi6ZxCvyGwGBJOeXDrWOfIbm9Eul8TFpca8S37QPHZFjr",
+    "Connection": "keep-alive",
+    "cache-control": "no-cache"
+  }
+}
+
+$.ajax(settings).done(function (response) {
+  for(var i=0;i<response.length;i++){
+      var optionText = response[i]['manufacturer_name'];
+            var optionValue = response[i]['manufacturer_code'];
+
+            $('#manufacturer').append(`<option value="${optionValue}">
+                                       ${optionText}
+                                  </option>`);
+
+  }
+});
+
+    }
+
+
+    function getmodel() {
+        var value = document.getElementById('manufacturer').value;
+        var settings = {
+  "async": true,
+  "crossDomain": true,
+  "url": base_url+"/api/filter_model/"+value+"/",
+  "method": "GET",
+  "headers": {
+    "Content-Type": "application/x-www-form-urlencoded",
+    {#"Authorization": "Basic YWRtaW46YWRtaW4xMjM=",#}
+    "Accept": "*/*",
+    "Cache-Control": "no-cache",
+    "Host": base_url,
+    "Accept-Encoding": "gzip, deflate",
+    "Cookie": "csrftoken=sSWIzSN6NR7qDiI79UHOi6ZxCvyGwGBJOeXDrWOfIbm9Eul8TFpca8S37QPHZFjr",
+    "Connection": "keep-alive",
+    "cache-control": "no-cache"
+  }
+}
+
+$.ajax(settings).done(function (response) {
+    $('#model').find('option').not(':first').remove();
+  for(var i=0;i<response.length;i++){
+      var optionText = response[i]['model_name'];
+            var optionValue = response[i]['model_code'];
+
+            $('#model').append(`<option value="${optionValue}">
+                                       ${optionText}
+                                  </option>`);
+
+  }
+});
+    }
+
+
+    function checkavail(id,cid,ctid) {
+        var settings = {
+  "async": true,
+  "crossDomain": true,
+  "url": base_url+"/api/available_date/"+id+"/",
+  "method": "GET",
+  "headers": {
+    "Content-Type": "application/x-www-form-urlencoded",
+    {#"Authorization": "Basic YWRtaW46YWRtaW4xMjM=",#}
+    "Accept": "*/*",
+    "Cache-Control": "no-cache",
+    "Host": base_url,
+    "Accept-Encoding": "gzip, deflate",
+    "Cookie": "csrftoken=sSWIzSN6NR7qDiI79UHOi6ZxCvyGwGBJOeXDrWOfIbm9Eul8TFpca8S37QPHZFjr",
+    "Connection": "keep-alive",
+    "cache-control": "no-cache"
+  }
+}
+
+$.ajax(settings).done(function (response) {
+
+  swal({
+			title: "Schedule Service",
+			text: "available service date " + response['available_date']+ " & daily queue position : "+response['daily_queue'],
+
+			showCancelButton: true,
+			confirmButtonText: 'Book Now',
+			cancelButtonText: 'Cancel'
+
+		},
+ function(isConfirm){
+
+  if (isConfirm) {
+				document.getElementById('dt').innerHTML = "Date: "+response['available_date']+", Queue Position: "+response['daily_queue'];
+				document.getElementById('servicedate').value = response['available_date'];
+				document.getElementById('position').value = response['daily_queue'];
+				document.getElementById('ocar').value = cid;
+				document.getElementById('ocust').value = ctid;
+
+				$("#modal-form3").modal();
+			}
+ });
+
+
+});
+
+
+
+    }
+
+
+    function addmech() {
+        var settings = {
+  "async": true,
+  "crossDomain": true,
+  "url": base_url+"/api/mechanic/",
+  "method": "GET",
+  "headers": {
+    "Content-Type": "application/x-www-form-urlencoded",
+    {#"Authorization": "Basic YWRtaW46YWRtaW4xMjM=",#}
+    "Accept": "*/*",
+    "Cache-Control": "no-cache",
+    "Host": base_url,
+    "Accept-Encoding": "gzip, deflate",
+    "Cookie": "csrftoken=sSWIzSN6NR7qDiI79UHOi6ZxCvyGwGBJOeXDrWOfIbm9Eul8TFpca8S37QPHZFjr",
+    "Connection": "keep-alive",
+    "cache-control": "no-cache"
+  }
+}
+
+$.ajax(settings).done(function (response) {
+
+  for(var i=0;i<response.length;i++){
+       var optionText = response[i]['mechanic_name'];
+            var optionValue = response[i]['mechanic_id'];
+      $("#mechanic").append(`<option value="${optionValue}">
+                                       ${optionText}
+                                  </option>`);
+  }
+});
+
+    }
+
+    $("#booksave").click(function(){
+  var mechanic = document.getElementById('mechanic').value;
+   var payment = document.getElementById('payment').value;
+   if(payment == "true") {
+       var pay = 1;
+   }
+   else {
+       var pay = 0;
+   }
+   var service_date = document.getElementById('servicedate').value;
+    var position = document.getElementById('position').value;
+    var customer = document.getElementById('ocust').value;
+    var car = document.getElementById('ocar').value;
+  var details = $('textarea#bdetails').val();
+
+var data = "car="+car+"&other_bookin_details="+details+"&payment_received_yn="+pay+"&customer="+customer+"&mechanic="+mechanic+"&day_position="+position+"&service_date="+service_date.toString();
+
+var xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
+
+xhr.addEventListener("readystatechange", function () {
+  if (this.readyState === 4) {
+       console.log(this.responseText);
+
+    document.getElementById("closemodel3").click();
+
+     $('#bookform')[0].reset();
+     var settings = {
+  "async": true,
+  "crossDomain": true,
+  "url": base_url+"/api/car_onservice/"+car+"/",
+  "method": "POST",
+  "headers": {
+    "Content-Type": "application/x-www-form-urlencoded",
+    {#"Authorization": "Basic YWRtaW46YWRtaW4xMjM=",#}
+    "Accept": "*/*",
+    "Cache-Control": "no-cache",
+    "Host": base_url,
+    "Cookie": "csrftoken=sSWIzSN6NR7qDiI79UHOi6ZxCvyGwGBJOeXDrWOfIbm9Eul8TFpca8S37QPHZFjr",
+    "Content-Length": "",
+    "Connection": "keep-alive",
+    "cache-control": "no-cache",
+      "X-CSRFToken":csrftoken,
+  }
+}
+
+$.ajax(settings).done(function (response) {
+});
+      getall();
+    swal("Booking Confirmed!", "Booking has been confirmed.", "success");
+  }
+});
+
+xhr.open("POST", base_url+"/api/booking/");
+xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+{#xhr.setRequestHeader("Authorization", "Basic YWRtaW46YWRtaW4xMjM=");#}
+xhr.setRequestHeader("Accept", "*/*");
+xhr.setRequestHeader("Cache-Control", "no-cache");
+xhr.setRequestHeader("Host",base_url);
+xhr.setRequestHeader("Accept-Encoding", "gzip, deflate");
+xhr.setRequestHeader("Content-Length", "124");
+xhr.setRequestHeader("Cookie", "csrftoken=sSWIzSN6NR7qDiI79UHOi6ZxCvyGwGBJOeXDrWOfIbm9Eul8TFpca8S37QPHZFjr");
+xhr.setRequestHeader("Connection", "keep-alive");
+xhr.setRequestHeader("cache-control", "no-cache");
+xhr.setRequestHeader("X-CSRFToken",csrftoken);
+
+xhr.send(data);
+
+
+
+});
+    addmech()
+    getmanufacturer();
 
 
     getall();

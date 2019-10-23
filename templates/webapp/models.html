@@ -9,7 +9,8 @@
 							<div class="page-header mt-0 shadow p-3">
 								<ol class="breadcrumb mb-sm-0">
 									<li class="breadcrumb-item"><a href="/dashboard/">Home</a></li>
-									<li class="breadcrumb-item active" aria-current="page">Manufacturer</li>
+                                    <li class="breadcrumb-item"><a href="/manufacturer/">Manufacturer</a></li>
+									<li class="breadcrumb-item active" aria-current="page">{{ data }}({{ data.manufacturer_code }})</li>
 								</ol>
 
 							</div>
@@ -17,7 +18,7 @@
 								<div class="col-md-12">
 									<div class="card shadow">
 										<div class="card-header">
-												<h2 class="mb-0" style="float:left">Manage Manufactures</h2>
+												<h2 class="mb-0" style="float:left">{{ data }} - {{ data.manufacturer_code }} : Models</h2>
 <button type="button" class="btn btn-success mt-1 mb-1"  style="float:right;" data-toggle="modal" data-target="#modal-form2">Add New</button>
 										</div>
 										<div class="card-body">
@@ -26,10 +27,10 @@
 													<thead>
 														<tr>
 															<th class="wd-15p">No</th>
-															<th class="wd-15p">Manufacturer Code</th>
-															<th class="wd-20p">Manufacturer Name</th>
-															<th class="wd-15p">Other Details</th>
-                                                            <th class="wd-10p">View Models</th>
+															<th class="wd-15p">Model Code</th>
+															<th class="wd-20p">Model Name</th>
+															<th class="wd-15p">Daily Hire rate</th>
+
 															<th class="wd-10p">Edit</th>
 															<th class="wd-25p">Delete</th>
 														</tr>
@@ -56,7 +57,7 @@
 
 																<div class="card-body px-lg-5 py-lg-5">
 																	<div class="text-center text-white mb-4 h2">
-																		Edit Manufacturer
+																		Edit Model
 																	</div>
 																	<form >
                                                                         <div class="form-group mb-3">
@@ -81,7 +82,7 @@
 																				<div class="input-group-prepend">
 																					<span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
 																				</div>
-                                                                                <textarea class="form-control" name="emechanic_details" id="emechanic_details" placeholder="Other Details" rows="4"></textarea>
+                                                                                <input type="number" class="form-control" name="emechanic_details" id="emechanic_details" placeholder="Other Details">
 																			</div>
 																		</div>
 
@@ -98,7 +99,7 @@
 											</div>
 
 
-
+<input type="number" value="{{ manu_id }}" id="manuid" readonly hidden>
     <div class="modal fade" id="modal-form2" tabindex="-1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
 												<div class="modal-dialog modal- modal-dialog-centered modal-sm" role="document">
 													<div class="modal-content">
@@ -107,7 +108,7 @@
 
 																<div class="card-body px-lg-5 py-lg-5">
 																	<div class="text-center text-white mb-4 h2">
-																		Add New Manufacturer
+																		Add New Model
 																	</div>
 																	<form>
                                                                         <div class="form-group mb-3">
@@ -116,7 +117,7 @@
 																					<span class="input-group-text"><i class="ni ni-email-83"></i></span>
 																				</div>
 
-																				<input class="form-control" name="manu_id" id="manu_id" placeholder="Manufacturer Code" type="number" required >
+																				<input class="form-control" name="manu_id" id="manu_id" placeholder="Model Code" type="number" required >
 																			</div>
 																		</div>
 																		<div class="form-group mb-3">
@@ -125,15 +126,16 @@
 																					<span class="input-group-text"><i class="ni ni-email-83"></i></span>
 																				</div>
 
-																				<input class="form-control" name="manu_name" id="manu_name" placeholder="Manufacturer Name" type="text" required >
+																				<input class="form-control" name="manu_name" id="manu_name" placeholder="Model Name" type="text" required >
 																			</div>
 																		</div>
-																		<div class="form-group">
+																		<div class="form-group mb-3">
 																			<div class="input-group input-group-alternative">
 																				<div class="input-group-prepend">
-																					<span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+																					<span class="input-group-text"><i class="ni ni-email-83"></i></span>
 																				</div>
-                                                                                <textarea  class="form-control" name="manu_details" id="manu_details" placeholder="Other Details" rows="4" required></textarea>
+
+																				<input class="form-control" name="manu_detail" id="manu_detail" placeholder="Daily Hire Rate" type="number" required >
 																			</div>
 																		</div>
 
@@ -149,6 +151,22 @@
 												</div>
 											</div>
 {% endblock %}
+
+
+{#{% block models %}#}
+{#    <li class="slide is-expanded">#}
+{#							<a class="side-menu__item" data-toggle="slide" href="#"><i class="side-menu__icon fe fe-map"></i><span class="side-menu__label">Models</span><i class="angle fa fa-angle-right"></i></a>#}
+{#							<ul class="slide-menu">#}
+{#                                {% for i in mod %}#}
+{#                                    <li>#}
+{#									<a href="" class="slide-item">{{ i.model_name }}</a>#}
+{#								</li>#}
+{#                                {% endfor %}#}
+{##}
+{##}
+{#							</ul>#}
+{#						</li>#}
+{#{% endblock %}#}
 {% block datatablejs %}
     <!-- Data table -->
 	<script src="{% static 'webapp/assets/plugins/datatable/jquery.dataTables.min.js' %}"></script>
@@ -183,7 +201,7 @@
 		}, function(isConfirm) {
 			if (isConfirm) {
 			   deleteitem(frm);
-			   swal("Deleted!", "Manufacturer has been deleted.", "success");
+			   swal("Deleted!", "Model has been deleted.", "success");
 
 			}
 
@@ -254,7 +272,7 @@ var csrftoken = readCookie('csrftoken');
         var settings = {
           "async": true,
           "crossDomain": true,
-          "url": base_url + "/api/manufacturer/",
+          "url": base_url + "/api/filter_model/"+document.getElementById('manuid').value+"/",
           "method": "GET",
           "headers": {
             "Content-Type": "application/x-www-form-urlencoded",
@@ -273,10 +291,9 @@ $.ajax(settings).done(function (response) {
   var data = response;
     for (var i=0;i<data.length; i++){
           $('#example').DataTable().row.add([
-            i+1, data[i]['manufacturer_code'], data[i]['manufacturer_name'],data[i]['manufacturer_detail'],
-               "<a href='/manufacturer/"+data[i]['manufacturer_code']+"/' type='button' class='btn btn-blue mt-1 mb-1'>View</a>",
-              "<button type='button' class='btn btn-blue mt-1 mb-1' onclick='return assigneditvalues("+data[i]['manufacturer_code']+");' data-toggle='modal' data-target='#modal-form' >Edit</button>",
-        "<button type='button' class='btn btn-danger mt-1 mb-1' onclick='return alrt("+data[i]['manufacturer_code']+");'>Delete</button>"
+            i+1, data[i]['model_code'], data[i]['model_name'],data[i]['daily_hire_rate'],
+              "<button type='button' class='btn btn-blue mt-1 mb-1' onclick='return assigneditvalues("+data[i]['model_code']+");' data-toggle='modal' data-target='#modal-form' >Edit</button>",
+        "<button type='button' class='btn btn-danger mt-1 mb-1' onclick='return alrt("+data[i]['model_code']+");'>Delete</button>"
             ]).draw();
     }
 
@@ -300,7 +317,7 @@ xhr.addEventListener("readystatechange", function () {
 });
 
 
-xhr.open("DELETE", base_url+"/api/manufacturer/"+id+"/");
+xhr.open("DELETE", base_url+"/api/model/"+id+"/");
 xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 {#xhr.setRequestHeader("Authorization", "Basic YWRtaW46YWRtaW4xMjM=");#}
 xhr.setRequestHeader("Accept", "*/*");
@@ -322,7 +339,7 @@ xhr.send(data);
         var settings = {
   "async": true,
   "crossDomain": true,
-  "url": base_url+"/api/manufacturer/"+id+"/",
+  "url": base_url+"/api/model/"+id+"/",
   "method": "GET",
   "headers": {
     "Content-Type": "application/x-www-form-urlencoded",
@@ -339,9 +356,9 @@ xhr.send(data);
 }
 
 $.ajax(settings).done(function (response) {
-        document.getElementById('eid').value = response['manufacturer_code'];
-        document.getElementById('emechanic_name').value = response['manufacturer_name'];
-        document.getElementById('emechanic_details').innerHTML = response['manufacturer_detail'];
+        document.getElementById('eid').value = response['model_code'];
+        document.getElementById('emechanic_name').value = response['model_name'];
+        document.getElementById('emechanic_details').value = response['daily_hire_rate'];
 });
 
     }
@@ -351,11 +368,11 @@ $.ajax(settings).done(function (response) {
 $("#editsave").click(function(){
   var id = document.getElementById('eid').value;
   var name = document.getElementById('emechanic_name').value;
-  var details = $('textarea#emechanic_details').val();
+  var details = document.getElementById('emechanic_details').value;
   var settings = {
   "async": true,
   "crossDomain": true,
-  "url": base_url+"/api/manufacturer/"+id+"/",
+  "url": base_url+"/api/model/"+id+"/",
   "method": "PUT",
   "headers": {
     "Content-Type": "application/x-www-form-urlencoded",
@@ -371,16 +388,17 @@ $("#editsave").click(function(){
       "X-CSRFToken":csrftoken,
   },
    "data": {
-    "manufacturer_name": name,
-    "manufacturer_detail": details,
-       "manufacturer_code":id,
+    "model_name": name,
+    "daily_hire_rate": details,
+       "model_code":id,
+       "manufacturer":document.getElementById('manuid').value,
   }
 }
 
 $.ajax(settings).done(function (response) {
      document.getElementById("closemodel").click();
      getall();
-    swal("Updated!", "Manufacturer details has been updated.", "success");
+    swal("Updated!", "Model details has been updated.", "success");
 });
 
 });
@@ -391,11 +409,13 @@ $.ajax(settings).done(function (response) {
     $("#addsave").click(function(){
         var code = document.getElementById('manu_id').value;
   var name = document.getElementById('manu_name').value;
-  var details = $('textarea#manu_details').val();
+  var details = document.getElementById('manu_detail').value;
+  var manid = document.getElementById('manuid').value;
+  alert(code+name+details+manid);
   var settings = {
   "async": true,
   "crossDomain": true,
-  "url": base_url+"/api/manufacturer/",
+  "url": base_url+"/api/model/",
   "method": "POST",
   "headers": {
     "Content-Type": "application/x-www-form-urlencoded",
@@ -411,9 +431,10 @@ $.ajax(settings).done(function (response) {
       "X-CSRFToken":csrftoken,
   },
    "data": {
-    "manufacturer_name": name,
-       "manufacturer_code":code,
-    "manufacturer_detail": details,
+    "model_name": name,
+       "model_code":code,
+    "daily_hire_rate": details,
+       'manufacturer': manid,
   }
 }
 
@@ -422,8 +443,8 @@ $.ajax(settings).done(function (response) {
      getall();
      document.getElementById('manu_name').value = "";
       document.getElementById('manu_id').value = "";
-    $('#manu_details').val('');
-    swal("Saved!", "Manufacturer has been added.", "success");
+    document.getElementById('manu_detail').value = "";
+    swal("Saved!", "Model has been added.", "success");
     return false;
 });
 
